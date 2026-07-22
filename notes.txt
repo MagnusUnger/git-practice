@@ -3,3 +3,7 @@ This is my second commit!
 
 With this change itll be the third! 
 Trying to get in the order of actions ... pull, make change, commit .. 
+
+starting to get tired.
+Lemme see if i can recall the practice order: git pull, make change, git status (shows difference), git diff, git add, git status,
+git commit, git push.
