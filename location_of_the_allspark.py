@@ -1,4 +1,1 @@
-#just kidding, its:
-
-grand	= 7
-central	= 0
+#LOL i dont know
