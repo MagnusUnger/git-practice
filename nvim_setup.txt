@@ -1,0 +1,266 @@
+# LazyVim auf einem zweiten Windows-Laptop installieren
+
+## 1. Öffne das Bash-Terminal
+
+Öffne **Git Bash**. Du kannst direkt in deinem Benutzerordner starten:
+
+```text
+C:\Users\DEIN_NAME
+```
+
+Prüfe den aktuellen Ordner:
+
+```bash
+pwd
+```
+
+Die Ausgabe sollte ungefähr so aussehen:
+
+```text
+/c/Users/DEIN_NAME
+```
+
+---
+
+## 2. Prüfe, ob `winget` verfügbar ist
+
+```bash
+winget --version
+```
+
+`winget` ist der Windows-Paketmanager, über den wir Neovim, Python und .NET installieren.
+
+---
+
+## 3. Installiere Neovim
+
+```bash
+winget install -e --id Neovim.Neovim
+```
+
+Damit wird Neovim systemweit installiert.
+
+Schließe danach **alle Git-Bash-Fenster** und öffne Git Bash erneut, damit der aktualisierte `PATH` geladen wird.
+
+Prüfe anschließend:
+
+```bash
+nvim --version
+```
+
+---
+
+## 4. Prüfe Git
+
+```bash
+git --version
+```
+
+Git wird benötigt, um dein Neovim-Repository von GitHub herunterzuladen. Da du Git Bash verwendest, sollte Git bereits installiert sein.
+
+---
+
+## 5. Installiere Python
+
+```bash
+winget install -e --id Python.Python.3.11
+```
+
+Damit installierst du eine reguläre Python-Version, die auch von Mason und dem Python-Sprachserver zuverlässig gefunden wird.
+
+Schließe Git Bash danach erneut vollständig und öffne es wieder.
+
+Prüfe Python:
+
+```bash
+python --version
+```
+
+---
+
+## 6. Installiere das .NET SDK
+
+```bash
+winget install -e --id Microsoft.DotNet.SDK.10
+```
+
+Das .NET SDK wird für deine C#-Backend-Projekte und die C#-Sprachunterstützung benötigt.
+
+Prüfe anschließend:
+
+```bash
+dotnet --version
+```
+
+---
+
+## 7. Prüfe, ob bereits eine Neovim-Konfiguration existiert
+
+```bash
+ls -la "$LOCALAPPDATA/nvim"
+```
+
+Erscheint:
+
+```text
+No such file or directory
+```
+
+ist alles sauber und du kannst direkt weitermachen.
+
+Falls der Ordner bereits existiert, sichere ihn zunächst:
+
+```bash
+mv "$LOCALAPPDATA/nvim" "$LOCALAPPDATA/nvim-backup"
+```
+
+Dadurch wird eine vorhandene Konfiguration nicht gelöscht, sondern in `nvim-backup` umbenannt.
+
+---
+
+## 8. Klone dein Neovim-Repository
+
+```bash
+git clone https://github.com/MagnusUnger/my_nvim.git "$LOCALAPPDATA/nvim"
+```
+
+Der Command lädt deine komplette LazyVim-Konfiguration direkt in den Windows-Konfigurationsordner:
+
+```text
+C:\Users\DEIN_NAME\AppData\Local\nvim
+```
+
+Du musst keine Dateien manuell kopieren.
+
+---
+
+## 9. Starte Neovim
+
+```bash
+nvim
+```
+
+Beim ersten Start lädt LazyVim automatisch alle Plugins aus deiner Konfiguration herunter. Warte, bis die Installationen abgeschlossen sind und keine laufenden Download-Meldungen mehr erscheinen.
+
+---
+
+## 10. Prüfe den Plugin-Status
+
+Gib in Neovim ein:
+
+```vim
+:Lazy
+```
+
+Dort sollten die Plugins installiert oder als aktuell angezeigt werden.
+
+Schließe das Fenster mit:
+
+```text
+q
+```
+
+---
+
+## 11. Prüfe Mason und die Sprachserver
+
+Öffne Mason:
+
+```vim
+:Mason
+```
+
+Suche nach:
+
+```text
+basedpyright
+```
+
+Falls dort noch nicht **Installed** steht, setze den Cursor darauf und drücke:
+
+```text
+i
+```
+
+`basedpyright` stellt Python-Autovervollständigung, Diagnosen, Typprüfung und Code-Navigation bereit.
+
+Die C#-Komponenten werden durch dein aktiviertes `lang.dotnet`-Extra und das installierte .NET SDK bereitgestellt.
+
+---
+
+## 12. Öffne ein Projekt
+
+Python-Beispiel:
+
+```bash
+cd ~/projects/mein-python-projekt
+nvim .
+```
+
+C#-Beispiel:
+
+```bash
+cd ~/projects/mein-csharp-projekt
+nvim .
+```
+
+Der Punkt `.` bedeutet, dass Neovim den aktuellen Ordner als Projekt öffnet.
+
+---
+
+## 13. Terminal in LazyVim öffnen
+
+Auf deiner deutschen Tastatur:
+
+```text
+Strg + 7
+```
+
+Damit blendest du das Terminal unten ein oder aus.
+
+Vom Terminal zurück in den Editor:
+
+```text
+Strg + k
+```
+
+Vom Editor nach unten ins Terminal:
+
+```text
+Strg + j
+```
+
+---
+
+## Kompakte Command-Reihenfolge
+
+Auf einem frischen zweiten Laptop:
+
+```bash
+winget install -e --id Neovim.Neovim
+winget install -e --id Python.Python.3.11
+winget install -e --id Microsoft.DotNet.SDK.10
+```
+
+Danach Git Bash vollständig neu starten:
+
+```bash
+nvim --version
+python --version
+dotnet --version
+git --version
+```
+
+Konfiguration herunterladen:
+
+```bash
+git clone https://github.com/MagnusUnger/my_nvim.git "$LOCALAPPDATA/nvim"
+```
+
+LazyVim starten:
+
+```bash
+nvim
+```
+
+Danach installiert LazyVim dein gespeichertes Setup automatisch.
