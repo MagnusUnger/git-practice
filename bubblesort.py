@@ -1,7 +1,4 @@
 #Simple bublee-sort
-
-array = [1,5,4,8,2,3,9,7,6]
-
 def bublee_sort(array: list) ->list:
     for i in range(len(array)):
         was_swapped = False
@@ -16,5 +13,3 @@ def bublee_sort(array: list) ->list:
             break
 
     return array
-
-#print(bublee_sort(array))

@@ -14,5 +14,3 @@ def insertionee_sort(array: list) -> list:
         array[j + 1] = to_be_inserted_numba
 
     return array
-
-print(insertionee_sort(array))

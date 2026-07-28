@@ -29,11 +29,5 @@ def merge(left, right):
     sorted.extend(left[i:])
     sorted.extend(right[j:])
 
-    return sorted
-
-
-example = [8,3,2,7,6,9,4,5]
-
-#print(mergee_sort(example))
-            
+    return sorted     
     
