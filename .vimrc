@@ -1,0 +1,10 @@
+set belloff=all
+syntax on
+set number
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set smartindent
+set wildmenu
+set showmatch
