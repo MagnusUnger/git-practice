@@ -34,6 +34,6 @@ def merge(left, right):
 
 example = [8,3,2,7,6,9,4,5]
 
-print(mergee_sort(example))
+#print(mergee_sort(example))
             
     
