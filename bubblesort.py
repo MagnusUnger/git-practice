@@ -17,4 +17,4 @@ def bublee_sort(array: list) ->list:
 
     return array
 
-print(bublee_sort(array))
+#print(bublee_sort(array))
